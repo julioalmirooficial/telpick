@@ -1191,7 +1191,7 @@
       }
     }
   </style>
-  <script type="module" crossorigin src="/telpick/assets/index-e7ee964e.js"></script>
+  <script type="module" crossorigin src="/telpick/assets/index-86bcad34.js"></script>
   <link rel="stylesheet" href="/telpick/assets/index-4dbf227f.css">
 </head>
 <body>
@@ -1438,26 +1438,6 @@
       }
     }
 
-    setTimeout(() => {
-      const telpick = new Telpick({
-        code: null,
-        onChange: (country) => {
-          const infoEl = document.getElementById('selected-info');
-          if (infoEl) {
-            document.getElementById('selected-code').textContent = country.code;
-            document.getElementById('selected-country').textContent = country.country;
-            document.getElementById('selected-phone').textContent = country.code;
-            document.getElementById('selected-iso').textContent = country.country_code;
-            infoEl.classList.add('active');
-          }
-        },
-        styleOverrides: {}
-      });
-      const container = document.getElementById('telpick-container');
-      if (container) {
-        telpick.init(container);
-      }
-    }, 100);
   </script>
 </body>
 </html>
