@@ -103,12 +103,15 @@ export default defineConfig({
         const distDir = join(__dirname, 'dist');
         if (!existsSync(distDir)) return;
         for (const name of readdirSync(distDir)) {
-          if (!name.endsWith('.js')) continue;
+          if (!/\.(?:js|mjs)$/.test(name)) continue;
           const filePath = join(distDir, name);
           let code = readFileSync(filePath, 'utf8');
           if (code.includes('./src/assets/flags/')) {
             code = code.replace(FLAGS_PATH_WRONG, FLAGS_PATH_RIGHT);
             writeFileSync(filePath, code, 'utf8');
+          }
+          if (code.includes('./src/assets/flags/')) {
+            throw new Error(`Invalid source flag path remains in dist/${name}`);
           }
         }
       },
