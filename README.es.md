@@ -23,6 +23,7 @@ Puedes probar la demo interactiva en línea:
 - Accesible con atributos ARIA
 - Diseño responsive
 - Búsqueda integrada de países
+- **TelpickZone**: selector de zona horaria IANA (110 zonas) con búsqueda por país, ciudad o identificador
 - Ligero y sin dependencias pesadas
 
 ## Instalación
@@ -202,40 +203,109 @@ interface CountryCode {
 
 ## TelpickZone
 
-Selector de zona horaria incluido junto a Telpick. Contiene 110 zonas IANA, detecta la zona del navegador y permite buscar por país, ciudad o identificador (`America/Lima`).
+Selector de zona horaria incluido junto a Telpick. Contiene **110 zonas IANA**, detecta la zona del navegador y permite buscar por país, ciudad o identificador (`America/Lima`).
 
-```jsx
+### React
+
+```tsx
+import React, { useState } from 'react'
 import { TelpickZoneReact } from 'telpick/zone/react'
+import 'telpick/dist/style.css'
 
-<TelpickZoneReact
-  timezone="America/Lima"
-  onChange={(zone) => console.log(zone)}
-/>
+function App() {
+  const [selectedZone, setSelectedZone] = useState(null)
+
+  return (
+    <TelpickZoneReact
+      timezone={null}
+      onChange={(zone) => {
+        console.log('Zona seleccionada:', zone)
+        setSelectedZone(zone)
+      }}
+    />
+  )
+}
 ```
+
+### Vue 3
 
 ```vue
-<TelpickZoneVue
-  :timezone="timezone"
-  @update:timezone="zone => timezone = zone.id"
-/>
+<template>
+  <TelpickZoneVue
+    :timezone="selectedTimezone"
+    @update:timezone="handleTimezoneChange"
+  />
+</template>
 
 <script setup>
+import { ref } from 'vue'
 import { TelpickZoneVue } from 'telpick/zone/vue'
+import 'telpick/dist/style.css'
+
+const selectedTimezone = ref(null)
+
+const handleTimezoneChange = (zone) => {
+  console.log('Zona seleccionada:', zone)
+  selectedTimezone.value = zone.id
+}
 </script>
 ```
+
+### Vanilla JavaScript / CDN
 
 ```html
 <link rel="stylesheet" href="https://unpkg.com/telpick@latest/dist/style.css">
 <div id="timezone"></div>
 <script src="https://unpkg.com/telpick@latest/dist/telpick-zone.umd.js"></script>
 <script>
-  new TelpickZone({
+  const telpickZone = new TelpickZone({
+    timezone: null,
     onChange: (zone) => console.log(zone.id, zone.offset)
-  }).init(document.getElementById('timezone'))
+  })
+  telpickZone.init(document.getElementById('timezone'))
 </script>
 ```
 
-Opciones disponibles: `timezone`, `onChange`, `styleOverrides`, `baseFlagUrl`, `locale` y `groupByContinent`.
+### Props de TelpickZone
+
+| Prop | Tipo | Por defecto | Descripción |
+|------|------|-------------|-------------|
+| `timezone` | `string \| null` | `null` | Zona IANA inicial. Si es `null`, se detecta con `Intl`. |
+| `onChange` | `(zone: TimezoneEntry) => void` | — | Callback al seleccionar una zona. |
+| `styleOverrides` | `object` | `{}` | Estilos inline del botón. |
+| `baseFlagUrl` | `string` | `''` | URL base de banderas (CDN o ruta propia). |
+| `locale` | `string` | `'es'` | Locale para orden y offset UTC. |
+| `groupByContinent` | `boolean` | `true` | Agrupa el listado por continente. |
+
+### Valor devuelto por `onChange`
+
+Cuando el usuario selecciona una zona, recibes un objeto `TimezoneEntry`:
+
+```javascript
+{
+  id: "America/Lima",       // Identificador IANA
+  city: "Lima",             // Ciudad derivada del ID
+  country: "Perú",          // País en español
+  country_code: "PE",       // ISO 3166-1 alpha-2
+  continent: "America",     // Continente del dataset
+  flag: "/flags/pe.webp",   // Ruta de la bandera
+  offset: "GMT-5"           // Offset UTC actual (respeta DST)
+}
+```
+
+### Interfaz TimezoneEntry
+
+```typescript
+interface TimezoneEntry {
+  id: string           // IANA timezone (ej: "America/Lima")
+  city: string         // Ciudad (ej: "Lima")
+  country: string      // País (ej: "Perú")
+  country_code: string // Código ISO (ej: "PE")
+  continent: string    // Continente (ej: "America")
+  flag: string         // URL o ruta de la bandera
+  offset: string       // Offset UTC dinámico (ej: "GMT-5")
+}
+```
 
 ## Licencia
 

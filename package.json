@@ -1,7 +1,7 @@
 {
   "name": "telpick",
   "version": "2.1.0",
-  "description": "Multi-platform country and phone code selector with a modern design, smooth animations, and automatic IP detection.",
+  "description": "Multi-platform country, phone code and timezone selectors (Telpick + TelpickZone) for React, Vue 3 and CDN with modern UI and IP detection.",
   "main": "dist/telpick.es.js",
   "module": "dist/telpick.es.js",
   "types": "dist/telpick.d.ts",

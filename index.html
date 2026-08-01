@@ -3,15 +3,37 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Telpick - Country and Phone Code Selector</title>
+  <title>Telpick & TelpickZone — Country, Phone & Timezone Selectors | React, Vue, CDN</title>
   <link rel="stylesheet" href="./src/telpick.css">
-  <meta name="description" content="Selector de país y código telefónico multiplataforma con diseño moderno y animaciones suaves.">
-  <meta name="keywords" content="selector de país, código telefónico, multiplataforma, diseño moderno, animaciones suaves">
+  <link rel="canonical" href="https://julioalmirooficial.github.io/telpick/">
+  <meta name="description" content="Telpick: country and phone code selector with IP detection. TelpickZone: IANA timezone selector with 110 zones. React, Vue 3, Vanilla JS and CDN. Modern UI, search, flags and UTC offset.">
+  <meta name="keywords" content="telpick, telpickzone, country selector, phone code selector, dial code, timezone selector, IANA timezone, react component, vue component, vanilla javascript, cdn, npm library">
   <meta name="author" content="Julio Almiro">
   <meta name="robots" content="index, follow">
   <meta name="googlebot" content="index, follow">
   <meta name="bingbot" content="index, follow">
   <meta name="yandexbot" content="index, follow">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Telpick & TelpickZone — React, Vue & CDN Selectors">
+  <meta property="og:description" content="Country, phone code and timezone selectors for React, Vue 3 and Vanilla JS. Interactive demo, npm package and CDN builds.">
+  <meta property="og:url" content="https://julioalmirooficial.github.io/telpick/">
+  <meta property="og:site_name" content="Telpick">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Telpick & TelpickZone — React, Vue & CDN Selectors">
+  <meta name="twitter:description" content="Country, phone code and timezone selectors for React, Vue 3 and Vanilla JS.">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Telpick",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Web",
+    "description": "Multi-platform country, phone code and timezone selectors for React, Vue 3 and Vanilla JavaScript.",
+    "url": "https://julioalmirooficial.github.io/telpick/",
+    "author": { "@type": "Person", "name": "Julio Almiro" },
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
   <style>
     :root {
       --color-ap-green-300: #45dfb5;
@@ -1198,10 +1220,10 @@
     <div class="hero-content">
       <p class="hero-package-name">TELPICK</p>
       <h1>
-        Build Your <span class="gradient-text">Phone Selector</span> Easily
+        Build Your <span class="gradient-text">Phone & Timezone Selectors</span> Easily
       </h1>
       <p>
-        Multi-platform country and phone code selector with a modern design, smooth animations, and automatic IP detection.
+        Telpick for country and phone codes with IP detection. TelpickZone for IANA timezones with search by country, city or zone. React, Vue 3, Vanilla JS and CDN.
       </p>
       <div class="hero-actions">
         <a href="https://www.npmjs.com/package/telpick" target="_blank" class="btn btn-outline">
@@ -1498,6 +1520,22 @@
           <code>&nbsp;&nbsp;}</code><br>
           <code>})</code><br><br>
           <code>telpickZone.init(document.getElementById(<span class="string">'telpick-zone-container'</span>))</code>
+        </div>
+      </div>
+
+      <div class="split-content" style="margin-top: 2rem;">
+        <h3>Return value <span class="gradient-text">onChange</span></h3>
+        <p>When the user selects a timezone, <code>onChange</code> (React/Vanilla) or <code>@update:timezone</code> (Vue) receives this object:</p>
+        <div class="code-example">
+          <code>{</code><br>
+          <code>&nbsp;&nbsp;id: <span class="string">"America/Lima"</span>,</code><br>
+          <code>&nbsp;&nbsp;city: <span class="string">"Lima"</span>,</code><br>
+          <code>&nbsp;&nbsp;country: <span class="string">"Perú"</span>,</code><br>
+          <code>&nbsp;&nbsp;country_code: <span class="string">"PE"</span>,</code><br>
+          <code>&nbsp;&nbsp;continent: <span class="string">"America"</span>,</code><br>
+          <code>&nbsp;&nbsp;flag: <span class="string">"/flags/pe.webp"</span>,</code><br>
+          <code>&nbsp;&nbsp;offset: <span class="string">"GMT-5"</span></code><br>
+          <code>}</code>
         </div>
       </div>
     </section>
