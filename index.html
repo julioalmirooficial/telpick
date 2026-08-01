@@ -1355,9 +1355,9 @@
 
     <section class="usage-section" id="docs">
       <div class="framework-tabs">
-        <button class="tab active" onclick="showTab('react')">React</button>
-        <button class="tab" onclick="showTab('vue')">Vue 3</button>
-        <button class="tab" onclick="showTab('vanilla')">Vanilla JS</button>
+        <button class="tab active" onclick="showTab('docs', 'react', this)">React</button>
+        <button class="tab" onclick="showTab('docs', 'vue', this)">Vue 3</button>
+        <button class="tab" onclick="showTab('docs', 'vanilla', this)">Vanilla JS</button>
       </div>
 
       <div id="react" class="tab-content active">
@@ -1420,6 +1420,89 @@
         </div>
       </div>
     </section>
+
+    <section id="uso-zone">
+      <div class="split-content">
+        <h3>Installation and usage <span class="gradient-text">TelpickZone</span></h3>
+        <p>Timezone selector with the same API style. Search by country, city, or IANA timezone.</p>
+        <div class="code-example">
+          <code><span class="comment"># Install the package</span></code><br>
+          <code>npm install telpick</code><br><br>
+          <code><span class="comment"># Import CSS styles (required)</span></code><br>
+          <code>import <span class="string">'telpick/dist/style.css'</span></code><br><br>
+          <code><span class="comment"># Import component</span></code><br>
+          <code>import { TelpickZoneReact } from <span class="string">'telpick/zone/react'</span></code>
+        </div>
+      </div>
+    </section>
+
+    <section class="usage-section" id="docs-zone">
+      <div class="framework-tabs">
+        <button class="tab active" onclick="showTab('docs-zone', 'zone-react', this)">React</button>
+        <button class="tab" onclick="showTab('docs-zone', 'zone-vue', this)">Vue 3</button>
+        <button class="tab" onclick="showTab('docs-zone', 'zone-vanilla', this)">Vanilla JS</button>
+      </div>
+
+      <div id="zone-react" class="tab-content active">
+        <div class="code-example">
+          <code><span class="comment">// React Component</span></code><br>
+          <code>import React, { useState } from <span class="string">'react'</span></code><br>
+          <code>import { TelpickZoneReact } from <span class="string">'telpick/zone/react'</span></code><br>
+          <code>import <span class="string">'telpick/dist/style.css'</span></code><br><br>
+          <code>function App() {</code><br>
+          <code>&nbsp;&nbsp;const [selectedZone, setSelectedZone] = useState(null)</code><br><br>
+          <code>&nbsp;&nbsp;return (</code><br>
+          <code>&nbsp;&nbsp;&nbsp;&nbsp;&lt;TelpickZoneReact</code><br>
+          <code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;timezone={null}</code><br>
+          <code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;onChange={(zone) => {</code><br>
+          <code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.log(<span class="string">'Selected timezone:'</span>, zone)</code><br>
+          <code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;setSelectedZone(zone)</code><br>
+          <code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}}</code><br>
+          <code>&nbsp;&nbsp;&nbsp;&nbsp;/&gt;</code><br>
+          <code>&nbsp;&nbsp;)</code><br>
+          <code>}</code>
+        </div>
+      </div>
+
+      <div id="zone-vue" class="tab-content">
+        <div class="code-example">
+          <code><span class="comment">&lt;!-- Vue 3 Component --&gt;</span></code><br>
+          <code>&lt;template&gt;</code><br>
+          <code>&nbsp;&nbsp;&lt;TelpickZoneVue</code><br>
+          <code>&nbsp;&nbsp;&nbsp;&nbsp;:timezone="selectedTimezone"</code><br>
+          <code>&nbsp;&nbsp;&nbsp;&nbsp;@update:timezone="handleTimezoneChange"</code><br>
+          <code>&nbsp;&nbsp;/&gt;</code><br>
+          <code>&lt;/template&gt;</code><br><br>
+          <code>&lt;script setup&gt;</code><br>
+          <code>import { ref } from <span class="string">'vue'</span></code><br>
+          <code>import { TelpickZoneVue } from <span class="string">'telpick/zone/vue'</span></code><br>
+          <code>import <span class="string">'telpick/dist/style.css'</span></code><br><br>
+          <code>const selectedTimezone = ref(null)</code><br><br>
+          <code>const handleTimezoneChange = (zone) => {</code><br>
+          <code>&nbsp;&nbsp;console.log(<span class="string">'Selected timezone:'</span>, zone)</code><br>
+          <code>&nbsp;&nbsp;selectedTimezone.value = zone.id</code><br>
+          <code>}</code><br>
+          <code>&lt;/script&gt;</code>
+        </div>
+      </div>
+
+      <div id="zone-vanilla" class="tab-content">
+        <div class="code-example">
+          <code><span class="comment">&lt;!-- HTML --&gt;</span></code><br>
+          <code>&lt;link rel="stylesheet" href="<span class="string">https://unpkg.com/telpick@latest/dist/style.css</span>"&gt;</code><br>
+          <code>&lt;div id="telpick-zone-container"&gt;&lt;/div&gt;</code><br>
+          <code>&lt;script src="<span class="string">https://unpkg.com/telpick@latest/dist/telpick-zone.umd.js</span>"&gt;&lt;/script&gt;</code><br><br>
+          <code><span class="comment">// JavaScript</span></code><br>
+          <code>const telpickZone = new TelpickZone({</code><br>
+          <code>&nbsp;&nbsp;timezone: null,</code><br>
+          <code>&nbsp;&nbsp;onChange: (zone) => {</code><br>
+          <code>&nbsp;&nbsp;&nbsp;&nbsp;console.log(<span class="string">'Selected timezone:'</span>, zone.id, zone.offset)</code><br>
+          <code>&nbsp;&nbsp;}</code><br>
+          <code>})</code><br><br>
+          <code>telpickZone.init(document.getElementById(<span class="string">'telpick-zone-container'</span>))</code>
+        </div>
+      </div>
+    </section>
   </div>
 
   <footer class="footer">
@@ -1430,22 +1513,20 @@
   <!-- El demo del selector usa el código local (demo-init.js). La doc más abajo muestra cómo usar desde unpkg en otros proyectos. -->
   
   <script>
-    function showTab(framework) {
-      document.querySelectorAll('.tab-content').forEach(tab => {
-        tab.classList.remove('active');
-      });
-      document.querySelectorAll('.tab').forEach(tab => {
-        tab.classList.remove('active');
-      });
-      document.getElementById(framework).classList.add('active');
-      event.target.classList.add('active');
-      updateFrameworkList(framework);
+    function showTab(sectionId, tabId, button) {
+      const section = document.getElementById(sectionId);
+      if (!section) return;
+      section.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+      section.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+      if (button) button.classList.add('active');
+      updateFrameworkList(tabId.replace('zone-', ''));
     }
 
     function selectFramework(framework) {
-      showTab(framework);
-      const tabs = document.querySelectorAll('.tab');
-      tabs.forEach((tab, index) => {
+      showTab('docs', framework, null);
+      const tabs = document.querySelectorAll('#docs .tab');
+      tabs.forEach((tab) => {
         if (tab.textContent.toLowerCase().includes(framework === 'vanilla' ? 'vanilla' : framework)) {
           tab.click();
         }
