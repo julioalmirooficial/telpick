@@ -287,3 +287,64 @@
 .ml-auto {
   margin-left: auto;
 }
+
+.telpick-zone-btn {
+  min-width: 220px;
+}
+
+.telpick-zone-dropdown {
+  width: min(380px, calc(100vw - 24px));
+}
+
+.telpick-zone-dropdown ul {
+  max-height: 320px;
+}
+
+.telpick-group-header {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  padding: 0.45rem 1rem;
+  background: var(--telpick-hover-bg);
+  color: var(--telpick-text-secondary);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.telpick-zone-details {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+.telpick-zone-label,
+.telpick-zone-id {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.telpick-item .telpick-zone-details .telpick-zone-id {
+  margin-left: 0;
+  color: var(--telpick-text-secondary);
+  font-size: 0.75rem;
+  font-weight: 400;
+}
+
+.telpick-zone-offset {
+  flex-shrink: 0;
+  color: var(--telpick-text-secondary);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.telpick-empty {
+  padding: 1rem;
+  color: var(--telpick-text-secondary);
+  font-size: var(--telpick-font-size);
+  text-align: center;
+}

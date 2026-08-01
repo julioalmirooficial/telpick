@@ -200,6 +200,43 @@ interface CountryCode {
 }
 ```
 
+## TelpickZone
+
+Selector de zona horaria incluido junto a Telpick. Contiene 110 zonas IANA, detecta la zona del navegador y permite buscar por país, ciudad o identificador (`America/Lima`).
+
+```jsx
+import { TelpickZoneReact } from 'telpick/zone/react'
+
+<TelpickZoneReact
+  timezone="America/Lima"
+  onChange={(zone) => console.log(zone)}
+/>
+```
+
+```vue
+<TelpickZoneVue
+  :timezone="timezone"
+  @update:timezone="zone => timezone = zone.id"
+/>
+
+<script setup>
+import { TelpickZoneVue } from 'telpick/zone/vue'
+</script>
+```
+
+```html
+<link rel="stylesheet" href="https://unpkg.com/telpick@latest/dist/style.css">
+<div id="timezone"></div>
+<script src="https://unpkg.com/telpick@latest/dist/telpick-zone.umd.js"></script>
+<script>
+  new TelpickZone({
+    onChange: (zone) => console.log(zone.id, zone.offset)
+  }).init(document.getElementById('timezone'))
+</script>
+```
+
+Opciones disponibles: `timezone`, `onChange`, `styleOverrides`, `baseFlagUrl`, `locale` y `groupByContinent`.
+
 ## Licencia
 
 MIT

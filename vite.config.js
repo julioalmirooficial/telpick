@@ -23,23 +23,17 @@ function copyDirSync(src, dest) {
 }
 
 function generateFlagsImports() {
-  const countryCodePath = join(__dirname, 'src', 'assets', 'country-code.json');
+  const flagsDir = join(__dirname, 'src', 'assets', 'flags');
   const outPath = join(__dirname, 'src', 'flags-imports.js');
-  const data = JSON.parse(readFileSync(countryCodePath, 'utf8'));
-  const seen = new Set();
-  const entries = [];
-  for (const item of data) {
-    const key = (item.country_code || '').toLowerCase();
-    if (!key || seen.has(key)) continue;
-    seen.add(key);
-    const filename = (item.flag || '').replace(/^.*\//, '') || `${key}.webp`;
-    entries.push({ key, filename });
-  }
-  const safeKey = (k) => (k === 'in' ? 'in_' : k === 'do' ? 'do_' : k);
+  const entries = readdirSync(flagsDir)
+    .filter(filename => /\.(webp|png)$/i.test(filename))
+    .map(filename => ({ key: filename.replace(/\.[^.]+$/, '').toLowerCase(), filename }))
+    .sort((a, b) => a.key.localeCompare(b.key));
+  const safeKey = (key) => `flag_${key.replace(/[^a-zA-Z0-9_$]/g, '_')}`;
   const imports = entries
     .map(({ key, filename }) => `import ${safeKey(key)} from './assets/flags/${filename}?url'`)
     .join('\n');
-  const exportEntries = entries.map(({ key }) => key === 'in' ? 'in: in_' : key === 'do' ? 'do: do_' : key).join(', ');
+  const exportEntries = entries.map(({ key }) => `${JSON.stringify(key)}: ${safeKey(key)}`).join(', ');
   const content = `// Generated – do not edit. Run build to regenerate.\n${imports}\n\nexport default { ${exportEntries} }\n`;
   writeFileSync(outPath, content, 'utf8');
 }
@@ -51,6 +45,9 @@ export default defineConfig({
         telpick: './index.js',
         'telpick.vue': './entry-vue.js',
         'telpick.react': './entry-react.jsx',
+        'telpick-zone': './index-zone.js',
+        'telpick-zone.vue': './entry-zone-vue.js',
+        'telpick-zone.react': './entry-zone-react.jsx',
       },
       fileName: (format, entryName) => `${entryName}.${format}.js`,
       formats: ['es'],
@@ -96,6 +93,7 @@ export default defineConfig({
       },
       closeBundle() {
         copyDirSync(join(__dirname, 'src', 'assets'), join(__dirname, 'dist', 'assets'));
+        copyFileSync(join(__dirname, 'src', 'telpick.d.ts'), join(__dirname, 'dist', 'telpick.d.ts'));
       },
     },
     {

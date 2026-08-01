@@ -23,6 +23,19 @@
       "import": "./dist/telpick.es.js",
       "types": "./dist/telpick.d.ts"
     },
+    "./zone": {
+      "import": "./dist/telpick-zone.es.js",
+      "require": "./dist/telpick-zone.umd.js",
+      "types": "./dist/telpick.d.ts"
+    },
+    "./zone/react": {
+      "import": "./dist/telpick-zone.react.es.js",
+      "types": "./dist/telpick.d.ts"
+    },
+    "./zone/vue": {
+      "import": "./dist/telpick-zone.vue.es.js",
+      "types": "./dist/telpick.d.ts"
+    },
     "./style.css": "./dist/style.css",
     "./dist/style.css": "./dist/style.css",
     "./src/telpick.css": "./src/telpick.css"
@@ -35,7 +48,7 @@
     "LICENSE"
   ],
   "scripts": {
-    "build": "vite build && vite build --config vite.config.umd.js",
+    "build": "vite build && vite build --config vite.config.umd.js && vite build --config vite.config.zone.umd.js",
     "build:demo": "vite build --config vite.config.demo.js",
     "deploy:demo": "npm run build:demo && gh-pages -d docs",
     "dev": "vite",
@@ -60,6 +73,8 @@
     "telpick",
     "geolocation",
     "ip-detection",
+    "timezone",
+    "timezone-selector",
     "typescript"
   ],
   "author": {
