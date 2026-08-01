@@ -1,6 +1,6 @@
 {
   "name": "telpick",
-  "version": "2.0.6",
+  "version": "2.1.0",
   "description": "Multi-platform country and phone code selector with a modern design, smooth animations, and automatic IP detection.",
   "main": "dist/telpick.es.js",
   "module": "dist/telpick.es.js",
